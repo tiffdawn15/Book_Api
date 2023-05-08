@@ -33,9 +33,8 @@ public class BookService {
     public Book addBook() {
 
         Book book = new Book().title("Dune")
-                        .author("Frank Hurbert")
+                        .author("Frank Herbert")
                                 .createdDate(LocalDateTime.now());
-//        mongoOperations.save(book);
 
         return book;
     }
