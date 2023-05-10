@@ -16,7 +16,7 @@ repositories {
 
 }
 	ext {
-		set('spring-framework.version', '5.3.18')
+		set('spring-framework.version', '5.3.10')
 		set('spring-security.version', '5.7.5')
 		set('springCloudVersion', '2020.0.5')
 		jacksonVersion = '2.14.2'
@@ -29,10 +29,8 @@ test {
 
 
 dependencies {
-
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-	implementation 'org.springframework.data:spring-data-mongodb'
+	implementation 'org.mongodb:mongodb-driver-legacy:4.1.1'
+	implementation 'org.springframework.data:spring-data-mongodb:3.3.0'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
