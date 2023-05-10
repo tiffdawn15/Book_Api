@@ -1,54 +1,35 @@
 package com.book.db.config;
 
+import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import org.springframework.context.annotation.Bean;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+
+import java.util.Collection;
+import java.util.Collections;
 
 @Configuration
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-//     @Value("$spring.data.mongodb.uri")
-//     private String mongoUri;
-//
-//     @Value("$spring.data.mongodb.database")
-//     private String mongoDatabase;
-//     private MongoTemplate mongoTemplate;
-//
-//
-     MongoClientSettings mongoClientSettings = MongoClientSettings.builder( ).build();
-//
-     @Bean
-     public MongoDatabaseFactory mongoDatabaseFactory(){
-          return new SimpleMongoClientDatabaseFactory("mongo://localhost:27017/");
-     }
+    @Override
+    protected String getDatabaseName() {
+        return "test";
+    }
 
-     @Override
-     protected String getDatabaseName() {
-          return null;
-     }
-////
-////     @Bean
-////     public MongoOperations mongoOperations() {
-//////          MongoDatabaseFactory databaseFactory = new MongoDatabaseFactory().getMongoDatabase()
-////       return   mongoTemplate = new MongoTemplate( mongoDatabaseFactory() );
-////
-////     }
-//
-//
-//     @Override
-//     protected String getDatabaseName() {
-//          return "books";
-//     }
-//
-//
-//     @Override
-//     public Collection getMappingBasePackages() {
-//          return Collections.singleton("com.baeldung");
-//     }
-//
+    @Override
+    public MongoClient mongoClient() {
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
 
+        return MongoClients.create(mongoClientSettings);
+    }
 
+    @Override
+    public Collection getMappingBasePackages() {
+        return Collections.singleton("com.baeldung");
+    }
 }
