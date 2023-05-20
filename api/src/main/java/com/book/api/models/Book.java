@@ -3,7 +3,6 @@ package com.book.api.models;
 import java.time.LocalDateTime;
 
 public class Book {
-
     private int id;
     private LocalDateTime createdDate;
     private String title;
