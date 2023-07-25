@@ -17,18 +17,14 @@ public class BookService {
     Logger LOG = LoggerFactory.getLogger(BookService.class);
 
     public List<Book> getBooks() {
-        List<Book> bookList = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
+        try {
+            books = bookRepository.findAll();
+        } catch (Exception e) {
+            LOG.error(e.toString());
+        }
 
-        bookList.add(new Book().id(1)
-                .author("Anne Rice")
-                .title("Interview with the Vampire"));
-        bookList.add(new Book().id(2)
-                .author("J.K. Rowling")
-                .title("Harry Potter and the Sorcerer's Stone"));
-
-        List<Book> books = bookRepository.findAll();
-
-        return bookList;
+        return books;
     }
 
     public Book addBook() {
