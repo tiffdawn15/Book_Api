@@ -17,6 +17,7 @@ public class BookService {
     Logger LOG = LoggerFactory.getLogger(BookService.class);
 
     public List<Book> getBooks() {
+        LOG.warn("I have made it to the book service class");
         List<Book> books = new ArrayList<>();
         try {
             books = bookRepository.findAll();
@@ -27,35 +28,30 @@ public class BookService {
         return books;
     }
 
-    public Book addBook() {
-
-        Book book = new Book().title("Dune")
-                .author("Frank Herbert")
-                .createdDate(LocalDateTime.now());
+    public Book addBook(Book book) {
 
         return bookRepository.save(book);
     }
 
-    public Book editBook(Book book) {
-        // Attempt to edit book in MongoDB
+    public Book editBook(Book book, String id) {
+        // Attempt to edit book in Mongodb
         try {
-            bookRepository.findById(String.valueOf(book.getId()));
+            bookRepository.findById(String.valueOf(id));
         } catch (Exception e) {
-            LOG.error(String.format("Failed to edit book in MongoDB. Id: %s"), book.getId());
+            LOG.error(String.format("Failed to edit book in Mongodb. Id: %x"), book.getId());
         }
         return book;
     }
 
-    public boolean deleteBook(int id) {
+    public boolean deleteBook(String id) {
         boolean success = false;
-        // Attempt to edit book in MongoDB
+        // Attempt to edit book in Mongodb
         try {
             bookRepository.deleteById(String.valueOf(id));
             success = true;
         } catch (Exception e) {
-            LOG.error(String.format("Failed to delete book in MongoDB. Id: %s"), id);
+            LOG.error(String.format("Failed to delete book in Mongodb. Id: %x"), id);
         }
         return success;
     }
-
 }

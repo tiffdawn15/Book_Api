@@ -3,7 +3,7 @@ package com.book.api.models;
 import java.time.LocalDateTime;
 
 public class Book {
-    private int id;
+    private String id;
     private LocalDateTime createdDate;
     private String title;
     private String author;
@@ -11,15 +11,15 @@ public class Book {
     public Book() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Book id(int id) {
+    public Book id(String id) {
         this.id = id;
         return this;
     }

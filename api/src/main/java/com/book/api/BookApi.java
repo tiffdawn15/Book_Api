@@ -18,17 +18,17 @@ public class BookApi {
     }
 
     @PostMapping("/v1")
-    public Book addBook() {
-        return bookService.addBook();
+    public Book addBook(@RequestBody Book book) {
+        return bookService.addBook(book);
     }
 
-    @PutMapping("/v1")
-    public Book editBook(Book book) {
-        return bookService.editBook(book);
+    @PutMapping("/v1/{id}")
+    public Book editBook(@PathVariable String id, Book book) {
+        return bookService.editBook(book, id);
     }
 
     @DeleteMapping("/v1/{id}")
-    public boolean deleteBook(@PathVariable int id) {
+    public boolean deleteBook(@PathVariable String id) {
         return bookService.deleteBook(id);
     }
 
