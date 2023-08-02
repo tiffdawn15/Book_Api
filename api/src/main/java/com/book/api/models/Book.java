@@ -1,10 +1,14 @@
 package com.book.api.models;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+
 import java.time.LocalDateTime;
 
 public class Book {
+    @Indexed(unique = true)
     private String id;
     private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
     private String title;
     private String author;
 
@@ -65,5 +69,16 @@ public class Book {
         return this;
     }
 
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
 
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public Book updatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
+        return this;
+    }
 }
