@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    // TODO: Operation Results
     @Autowired
     BookRepository bookRepository;
     Logger LOG = LoggerFactory.getLogger(BookService.class);
@@ -79,10 +78,8 @@ public class BookService {
         OperationResult<Book> result = new OperationResult<>();
         // Attempt to edit book in Mongodb
         Book savedBook = new Book();
-        book.updatedDate(LocalDateTime.now());
-
-        // TODO: Check that the created date isn't being set to null
         try {
+            book.updatedDate(LocalDateTime.now());
             savedBook = bookRepository.save(book);
         } catch (Exception e) {
             LOG.error(String.format("Failed to edit book in Mongodb. Id: %s"), book.getId());
