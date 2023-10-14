@@ -56,14 +56,15 @@ public class BookService {
         boolean success = false;
         book.createdDate(LocalDateTime.now());
         try {
+            LOG.warn(book.getTitle());
             bookRepository.save(book);
             success = true;
         } catch (Exception e) {
             LOG.error(String.format("Failed to save new book. %s", book.getTitle()), e);
         }
 
-        return result.result(true)
-                .worked(true)
+        return result.result(success)
+                .worked(success)
                 .httpStatus(HttpStatus.OK);
     }
 

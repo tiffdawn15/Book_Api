@@ -1,14 +1,17 @@
 package com.book.api.models;
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+@Document()
 public class Book {
-    @Indexed(unique = true)
+    @Indexed
     private String id;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+    @Indexed(unique = true)
     private String title;
     private String author;
 
