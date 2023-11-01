@@ -27,8 +27,8 @@ public class BookApi {
 
     @CrossOrigin
     @PutMapping("/v1/{id}")
-    public OperationResult<Book> editBook(@PathVariable String id, @RequestBody Book book) {
-        return bookService.editBook(book, id);
+    public OperationResult<Book> editBook(@RequestBody Book book) {
+        return bookService.editBook(book);
     }
 
     @CrossOrigin
