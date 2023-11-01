@@ -75,7 +75,7 @@ public class BookService {
      * @param id
      * @return
      */
-    public OperationResult<Book> editBook(Book book, String id) {
+    public OperationResult<Book> editBook(Book book) {
         OperationResult<Book> result = new OperationResult<>();
         // Attempt to edit book in Mongodb
         Book savedBook = new Book();
